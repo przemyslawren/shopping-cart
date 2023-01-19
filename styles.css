@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  border: 1px solid;
+}
+
+.product-card {
+  background-color: black;
+}
