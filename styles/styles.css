@@ -1,0 +1,24 @@
+/* Reset Margins  & Fonts */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Containers */
+.container {
+  display: flex;
+}
+
+.shop {
+  /* CART */
+}
+
+.shop .products .product {
+  border: solid;
+}
+
+.shop .products img {
+  width: 100px;
+  display: block;
+}
