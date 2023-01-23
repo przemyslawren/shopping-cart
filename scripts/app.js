@@ -12,11 +12,11 @@ fetch("products.json")
         <h4>${item.manufacturer}</h4>
         <p>${item.shortDescription}</p>
         <span>${item.price}zł</span>
-        <span class="quantity">
-        <button class="btn btn-primary btn-sm"><i class="bi bi-dash-square"></i></button>
+        <div class="buttons">
+        <i onclick="decrement(${item.id})" class="bi bi-dash-square"></i>
         <span>${item.quantity}</span>
-        <button class="btn btn-primary btn-sm"><i class="bi bi-plus-square"></i></button>
-        </span>
+        <i onclick="increment(${item.id})" class="bi bi-plus-square"></i>
+        </div>
         <button class="btn btn-success btn-sm add-item"><i class="bi bi-cart-plus"></i>
         </button>
         
@@ -26,16 +26,32 @@ fetch("products.json")
   })
   .catch((error) => console.log("App error:", error));
 
-function renderAllCartItems(cartItemsArray) {
-  cartItemsArray.forEach((cartItem) => renderCartItem(cartItem));
+  let increment = (id) => {
+    let selectedItem = id;
+    let search = basket.find((x)=> x.id === selectedItem.id);
+
+if(search === undefined) {
+
+  basket.push({
+    id: selectedItem.id,
+    item: 1,
+  })
+}
+else {
+  search.item +=1;
+
 }
 
-function renderCartItem(cartItem) {
-  const newLi = document.createElement("li");
-  newLi.innerHTML = `
-      <p id="pTag">${item.name}: ${item.price}zł
-      <button class="delete-button">
-      <span>remove</span></button></p>
-      `;
-  findListOfItems.append(newLi);
+  console.log(basket);
 }
+
+    
+  let decrement = (id) => {
+    let selectedItem = id;
+    console.log(selectedItem.id);
+  };
+  let update = () => {};
+
+  let basket = [{
+
+  }]
