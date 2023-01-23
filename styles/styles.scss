@@ -10,14 +10,10 @@
 /* Containers */
 
 .base-container {
-  margin: 5%;
+  margin: 0 5%;
 }
 
-.grid-container {
-  display: grid;
-}
-
-.flex-container {
+.container {
   display: flex;
 }
 
