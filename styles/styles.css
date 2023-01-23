@@ -14,44 +14,40 @@
   display: flex;
 }
 
-.header {
-  text-align: center;
-}
-
-.shop {
-  gap: 15px;
-}
-
-.shop .products {
-  display: flex;
-  flex-wrap: wrap;
+.navbar {
   justify-content: center;
-  max-width: 70%;
+}
+
+.main {
   gap: 15px;
 }
 
-.shop .products .product {
+.main .shop {
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 70%;
+}
+
+.main .shop .product {
   flex-direction: column;
-  padding: 30px 10px;
   border: 1px solid grey;
   border-radius: 25px;
   text-align: center;
-  width: 200px;
   flex-basis: 200px;
   flex-grow: 1;
 }
 
-.shop .products .product .product-header img {
+.main .shop .product img {
   width: 100px;
-  height: 100px;
-  display: block;
 }
 
-.shop .cart {
+.main .cart {
+  width: 30%;
   border: 1px solid grey;
   height: 500px;
   border-radius: 25px;
-  gap: 5px;
-  flex: 1;
-  justify-content: center;
+}
+
+.main .cart h2 {
+  text-align: center;
 }
