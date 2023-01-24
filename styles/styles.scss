@@ -22,10 +22,8 @@
   justify-content: center;
 }
 
-.main {
-  // justify-content: space-between;
-  gap: 15px;
-  .shop {
+.shop {
+  .productList {
     gap: 15px;
     flex-wrap: wrap;
     max-width: 70%;
@@ -42,11 +40,10 @@
     }
   }
   .cart {
-    width: 30%;
+    max-width: 30%;
     border: 1px solid grey;
     height: 500px;
     overflow-y: scroll;
-
     h2 {
       text-align: center;
     }

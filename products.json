@@ -6,7 +6,7 @@
     "manufacturer": "CUBE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 3249,
-    "quantity": 0
+    "quantity": 5
   },
   {
     "id": 1,
@@ -15,7 +15,7 @@
     "manufacturer": "CUBE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 3249,
-    "quantity": 0
+    "quantity": 7
   },
   {
     "id": 2,
@@ -24,7 +24,7 @@
     "manufacturer": "CUBE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 3499,
-    "quantity": 0
+    "quantity": 12
   },
   {
     "id": 3,
@@ -33,7 +33,7 @@
     "manufacturer": "CUBE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 4249,
-    "quantity": 0
+    "quantity": 8
   },
   {
     "id": 4,
@@ -42,7 +42,7 @@
     "manufacturer": "HAIBIKE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 19199,
-    "quantity": 0
+    "quantity": 2
   },
   {
     "id": 5,
@@ -51,7 +51,7 @@
     "manufacturer": "HAIBIKE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 18299,
-    "quantity": 0
+    "quantity": 5
   },
   {
     "id": 6,
@@ -60,7 +60,7 @@
     "manufacturer": "HAIBIKE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 22299,
-    "quantity": 0
+    "quantity": 8
   },
   {
     "id": 7,
@@ -69,7 +69,7 @@
     "manufacturer": "HAIBIKE",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 13919,
-    "quantity": 0
+    "quantity": 25
   },
   {
     "id": 8,
@@ -78,7 +78,7 @@
     "manufacturer": "GHOST",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 16499,
-    "quantity": 0
+    "quantity": 4
   },
   {
     "id": 9,
@@ -87,7 +87,7 @@
     "manufacturer": "GHOST",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 22199,
-    "quantity": 0
+    "quantity": 10
   },
   {
     "id": 10,
@@ -96,7 +96,7 @@
     "manufacturer": "GHOST",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 6999,
-    "quantity": 0
+    "quantity": 5
   },
   {
     "id": 11,
@@ -105,7 +105,7 @@
     "manufacturer": "GHOST",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 2599,
-    "quantity": 0
+    "quantity": 12
   },
   {
     "id": 12,
@@ -114,7 +114,7 @@
     "manufacturer": "ORBEA",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": "2999",
-    "quantity": 0
+    "quantity": 3
   },
   {
     "id": 13,
@@ -123,7 +123,7 @@
     "manufacturer": "ORBEA",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 3599,
-    "quantity": 0
+    "quantity": 10
   },
   {
     "id": 14,
@@ -132,7 +132,7 @@
     "manufacturer": "ORBEA",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 5499,
-    "quantity": 0
+    "quantity": 18
   },
   {
     "id": 15,
@@ -141,7 +141,7 @@
     "manufacturer": "ORBEA",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 6299,
-    "quantity": 0
+    "quantity": 8
   },
   {
     "id": 16,
@@ -150,7 +150,7 @@
     "manufacturer": "FOCUS",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 15799,
-    "quantity": 0
+    "quantity": 2
   },
   {
     "id": 17,
@@ -159,7 +159,7 @@
     "manufacturer": "FOCUS",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 18899,
-    "quantity": 0
+    "quantity": 4
   },
   {
     "id": 18,
@@ -168,7 +168,7 @@
     "manufacturer": "FOCUS",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 19899,
-    "quantity": 0
+    "quantity": 5
   },
   {
     "id": 19,
@@ -177,6 +177,6 @@
     "manufacturer": "FOCUS",
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 2699,
-    "quantity": 0
+    "quantity": 9
   }
 ]

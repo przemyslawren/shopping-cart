@@ -18,17 +18,13 @@
   justify-content: center;
 }
 
-.main {
-  gap: 15px;
-}
-
-.main .shop {
+.shop .productList {
   gap: 15px;
   flex-wrap: wrap;
   max-width: 70%;
 }
 
-.main .shop .product {
+.shop .productList .product {
   flex-direction: column;
   border: 1px solid grey;
   border-radius: 25px;
@@ -37,17 +33,17 @@
   flex-grow: 1;
 }
 
-.main .shop .product img {
+.shop .productList .product img {
   width: 100px;
 }
 
-.main .cart {
-  width: 30%;
+.shop .cart {
+  max-width: 30%;
   border: 1px solid grey;
   height: 500px;
   overflow-y: scroll;
 }
 
-.main .cart h2 {
+.shop .cart h2 {
   text-align: center;
 }
