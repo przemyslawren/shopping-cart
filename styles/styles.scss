@@ -8,10 +8,6 @@
 
 /* Containers */
 
-.base-container {
-  margin: 0 5%;
-}
-
 .container {
   display: flex;
 }
@@ -21,31 +17,64 @@
 .navbar {
   justify-content: center;
 }
-
 .shop {
-  .productList {
-    gap: 15px;
+  border: 1px solid grey;
+
+  .shopProducts {
     flex-wrap: wrap;
-    max-width: 70%;
-    .product {
-      flex-direction: column;
+    gap: 15px;
+
+    .shopProduct {
       border: 1px solid grey;
-      border-radius: 25px;
       text-align: center;
-      flex-basis: 200px;
       flex-grow: 1;
       img {
         width: 100px;
       }
+
+      .productDetails {
+        justify-content: space-around;
+        align-items: center;
+        border: 1px solid grey;
+        list-style: none;
+        text-decoration: none;
+        color: #000000;
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
+
+        .addRemove {
+          flex-direction: column;
+          height: fit-content;
+          width: 50%;
+        }
+      }
     }
   }
-  .cart {
-    max-width: 30%;
-    border: 1px solid grey;
-    height: 500px;
+}
+.cart {
+  border: 1px solid grey;
+  width: 30%;
+  height: fit-content;
+
+  .cartProducts {
     overflow-y: scroll;
+    max-height: 400px;
+
     h2 {
       text-align: center;
+    }
+
+    .cartProduct {
+      list-style: none;
+      text-decoration: none;
+      color: #000000;
+    }
+    .addRemove {
+      flex-direction: column;
+      height: fit-content;
+      width: 50%;
     }
   }
 }
