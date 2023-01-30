@@ -10,32 +10,36 @@
   display: flex;
 }
 
-main {
+.shopIcon {
+  padding: 15px;
+}
+
+body main {
   display: flex;
   margin-top: 3%;
   margin-bottom: 3%;
 }
 
-main .shop {
+body main .shop {
   border: 1px solid grey;
 }
 
-main .shop .shopProducts {
+body main .shop .shopProducts {
   flex-wrap: wrap;
   gap: 15px;
 }
 
-main .shop .shopProducts .shopProduct {
+body main .shop .shopProducts .shopProduct {
   border: 1px solid grey;
   text-align: center;
   flex-grow: 1;
 }
 
-main .shop .shopProducts .shopProduct img {
+body main .shop .shopProducts .shopProduct img {
   width: 100px;
 }
 
-main .shop .shopProducts .shopProduct .productDetails {
+body main .shop .shopProducts .shopProduct .productDetails {
   margin: 0;
   justify-content: space-around;
   align-items: center;
@@ -45,41 +49,42 @@ main .shop .shopProducts .shopProduct .productDetails {
   color: #000000;
 }
 
-main .shop .shopProducts .shopProduct .productDetails input::-webkit-outer-spin-button,
-main .shop .shopProducts .shopProduct .productDetails input::-webkit-inner-spin-button {
+body main .shop .shopProducts .shopProduct .productDetails input::-webkit-outer-spin-button,
+body main .shop .shopProducts .shopProduct .productDetails input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-main .shop .shopProducts .shopProduct .productDetails .shopProductPrice {
+body main .shop .shopProducts .shopProduct .productDetails .shopProductPrice {
   padding-right: 20px;
 }
 
-main .shop .shopProducts .shopProduct .productDetails .addRemove {
+body main .shop .shopProducts .shopProduct .productDetails .addRemove {
   flex-direction: column;
 }
 
-main .cart {
-  border: 1px solid grey;
-  width: 30%;
+body main .cart {
+  min-width: 30%;
   height: fit-content;
 }
 
-main .cart .cartProducts {
+body main .cart .cartHeading {
+  border-top: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+body main .cart .cartProducts {
   overflow-y: scroll;
   max-height: 400px;
 }
 
-main .cart .cartProducts h2 {
-  text-align: center;
-}
-
-main .cart .cartProducts .cartProduct {
+body main .cart .cartProducts .cartProduct {
   list-style: none;
   text-decoration: none;
   color: #000000;
+  padding: 0 10px;
 }
 
-main .cart .cartProducts .cartDetails {
+body main .cart .cartProducts .cartProduct .cartDetails {
   justify-content: space-around;
   align-items: center;
   border: 1px solid grey;
@@ -88,16 +93,21 @@ main .cart .cartProducts .cartDetails {
   color: #000000;
 }
 
-main .cart .cartProducts .cartDetails input::-webkit-outer-spin-button,
-main .cart .cartProducts .cartDetails input::-webkit-inner-spin-button {
+body main .cart .cartProducts .cartProduct .cartDetails input::-webkit-outer-spin-button,
+body main .cart .cartProducts .cartProduct .cartDetails input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-main .cart .cartProducts .cartDetails .cartProductPrice {
-  padding-right: 20px;
+body main .cart .cartProducts .cartProduct .cartDetails .cartProductPrice {
+  padding: 20px;
 }
 
-main .cart .cartProducts .cartDetails .addRemove {
+body main .cart .cartProducts .cartProduct .cartDetails .addRemove {
   flex-direction: column;
-  width: 50%;
+}
+
+body main .grandTotal {
+  background-color: lightgrey;
+  text-align: center;
+  padding-bottom: 10px;
 }

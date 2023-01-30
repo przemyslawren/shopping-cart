@@ -1,6 +1,7 @@
 // select shop element
 const shopProducts = document.querySelector(".shopProducts");
 const cartProducts = document.querySelector(".cartProducts");
+const cartTotal = document.querySelector(".cartTotal");
 let cart = [];
 
 // render shop products
@@ -82,6 +83,7 @@ function addToCart(id) {
   }
 
   input.value = 1;
+  displayTotal();
   updateCart();
 }
 
@@ -92,19 +94,18 @@ function updateCart() {
     let totalPrice = cartItem.price * cartItem.quantity;
     const item = `
       <div class="cartProduct">
-        <h3>${cartItem.name}</h3>
-        <h4>${cartItem.manufacturer}</h4>
         <ul class="cartDetails container">
-          <li class="cartProductPrice productSubtotal">${totalPrice.toFixed(
-            2
-          )}zł</li>
+        <li><h4>${cartItem.name}</h4></li>
+        <li class="cartProductPrice productSubtotal">${totalPrice.toFixed(
+          2
+        )}zł</li>
           <li class="cartQuantity"><input type="number" id=${
             cartItem.id
           } class="input" min="1" max="5" value=${cartItem.quantity}></li>
           <li class="addRemove container">
-            <button onclick="updateCart('plus', ${cartItem.id})">
-            +</i></button>
-            <button onclick="updateCart('minus', ${cartItem.id})">-</i></button>
+            <button onclick="update('plus', ${cartItem.id})">
+            +</button>
+            <button onclick="update('minus', ${cartItem.id})">-</button>
             <li class="removeItem"> <i onclick=removeFromCart(${
               cartItem.id
             }) class="fa-solid fa-trash-alt fa-xl"></i> </li>
@@ -113,9 +114,6 @@ function updateCart() {
     `;
     cartProducts.innerHTML += item;
   });
-  displayTotal();
-  const checkoutButton = `<button onclick="checkout()" id="checkoutButton">Checkout</button>`;
-  cartProducts.innerHTML += checkoutButton;
 }
 
 // calculate total
@@ -129,9 +127,13 @@ function calculateTotal() {
 
 //display total
 function displayTotal() {
-  const total = calculateTotal();
-  const totalCost = `<h2 id="total">Total: ${total.toFixed(2)}zł</h2>`;
-  cartProducts.innerHTML += totalCost;
+  let total = calculateTotal();
+  cartTotal.innerHTML = `
+  <div class="grandTotal">
+  <h4>Grand total: ${total.toFixed(2)}zł</h4>
+  <button onclick="checkout()" class="btn btn-secondary
+  ">Checkout</button>
+  </div>`;
 }
 
 //remove from cart
@@ -139,7 +141,7 @@ function removeFromCart(id) {
   cart = cart.filter((cartItem) => cartItem.id !== id);
   updateCart();
   if (!cart.length) {
-    hideCheckoutElements();
+    hideCheckout();
   }
 }
 
@@ -152,7 +154,7 @@ function checkout() {
 
   alert(`Checking out, total amount is: ${total.toFixed(2)}zł`);
   clearCart();
-  hideCheckoutElements();
+  hideCheckout();
 }
 
 // clear cart
@@ -161,8 +163,7 @@ function clearCart() {
   updateCart();
 }
 
-// hide checkout elements
-function hideCheckoutElements() {
-  document.getElementById("total").style.display = "none";
-  document.getElementById("checkoutButton").style.display = "none";
+// hide checkout
+function hideCheckout() {
+  document.querySelector(".grandTotal").style.display = "none";
 }
