@@ -1,38 +1,81 @@
-/* Reset Margins  & Fonts */
-
+/* Reset Margins & Fonts */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Containers */
-
+/* Containers & Buttons */
 .container {
   display: flex;
 }
 
-// Header
+// .checkoutButton {
+// }
 
-.navbar {
-  justify-content: center;
-}
-.shop {
-  border: 1px solid grey;
+//Shop
+main {
+  display: flex;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  .shop {
+    border: 1px solid grey;
 
-  .shopProducts {
-    flex-wrap: wrap;
-    gap: 15px;
+    .shopProducts {
+      flex-wrap: wrap;
+      gap: 15px;
 
-    .shopProduct {
-      border: 1px solid grey;
-      text-align: center;
-      flex-grow: 1;
-      img {
-        width: 100px;
+      .shopProduct {
+        border: 1px solid grey;
+        text-align: center;
+        flex-grow: 1;
+        img {
+          width: 100px;
+        }
+
+        .productDetails {
+          margin: 0;
+          justify-content: space-around;
+          align-items: center;
+          border: 1px solid grey;
+          list-style: none;
+          text-decoration: none;
+          color: #000000;
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
+
+          .shopProductPrice {
+            padding-right: 20px;
+          }
+
+          .addRemove {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+  .cart {
+    border: 1px solid grey;
+    width: 30%;
+    height: fit-content;
+
+    .cartProducts {
+      overflow-y: scroll;
+      max-height: 400px;
+
+      h2 {
+        text-align: center;
       }
 
-      .productDetails {
+      .cartProduct {
+        list-style: none;
+        text-decoration: none;
+        color: #000000;
+      }
+      .cartDetails {
         justify-content: space-around;
         align-items: center;
         border: 1px solid grey;
@@ -44,37 +87,15 @@
           -webkit-appearance: none;
         }
 
+        .cartProductPrice {
+          padding-right: 20px;
+        }
+        
         .addRemove {
           flex-direction: column;
-          height: fit-content;
           width: 50%;
         }
       }
-    }
-  }
-}
-.cart {
-  border: 1px solid grey;
-  width: 30%;
-  height: fit-content;
-
-  .cartProducts {
-    overflow-y: scroll;
-    max-height: 400px;
-
-    h2 {
-      text-align: center;
-    }
-
-    .cartProduct {
-      list-style: none;
-      text-decoration: none;
-      color: #000000;
-    }
-    .addRemove {
-      flex-direction: column;
-      height: fit-content;
-      width: 50%;
     }
   }
 }
