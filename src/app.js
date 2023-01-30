@@ -95,7 +95,7 @@ function updateCart() {
     const item = `
       <div class="cartProduct">
         <ul class="cartDetails container">
-        <li><h4>${cartItem.name}</h4></li>
+        <li><h5>${cartItem.name}</h5></li>
         <li class="cartProductPrice productSubtotal">${totalPrice.toFixed(
           2
         )}zł</li>
