@@ -6,25 +6,25 @@ let cart = [];
 
 // render shop products
 function displayShopProducts() {
-  products.forEach((product) => {
-    let totalPrice = product.price * product.quantity;
+  products.forEach((cartItem) => {
+    let totalPrice = cartItem.price * cartItem.quantity;
     const item = `
         <div class="shopProduct">
-        <img src="${product.image}" alt="Image of a bike"</img>
-        <h3>${product.name}</h3>
-        <h4>${product.manufacturer}</h4>
-        <p>${product.shortDescription}</p>
+        <img src="${cartItem.image}" alt="Image of a bike"</img>
+        <h3>${cartItem.name}</h3>
+        <h4>${cartItem.manufacturer}</h4>
+        <p>${cartItem.shortDescription}</p>
         <ul class="productDetails container">
           <li class="shopProductPrice">${totalPrice.toFixed(2)}zł</li>
           <li class="quantity"><input type="number" id=${
-            product.id
-          } class="input" min="1" max="5" value=${product.quantity}></li>
+            cartItem.id
+          } class="input" min="1" max="5" value=${cartItem.quantity}></li>
           <li class="addRemove container">
-            <button onclick="update('plus', ${product.id})">
+            <button onclick="update('plus', ${cartItem.id})">
             +</i></button>
-            <button onclick="update('minus', ${product.id})">-</i></button>
+            <button onclick="update('minus', ${cartItem.id})">-</i></button>
           <li class="addToCart"><i onclick=addToCart(${
-            product.id
+            cartItem.id
           }) class="fa-solid fa-cart-plus fa-xl"></i></li>
         </ul>
         </div>
@@ -75,7 +75,7 @@ function addToCart(id) {
   if (existingCartItem) {
     existingCartItem.quantity += value;
   } else {
-    const cartItem = products.find((product) => product.id === id);
+    const cartItem = products.find((cartItem) => cartItem.id === id);
     cart.push({
       ...cartItem,
       quantity: value,
@@ -87,33 +87,47 @@ function addToCart(id) {
   updateCart();
 }
 
-// update cart and display total
+// update cart, sort by manufacturer and display total
 function updateCart() {
   cartProducts.innerHTML = "";
+  let manufacturers = {};
+
   cart.forEach((cartItem) => {
     let totalPrice = cartItem.price * cartItem.quantity;
-    const item = `
-      <div class="cartProduct">
-        <ul class="cartDetails container">
-        <li><h5>${cartItem.name}</h5></li>
-        <li class="cartProductPrice productSubtotal">${totalPrice.toFixed(
-          2
-        )}zł</li>
-          <li class="cartQuantity"><input type="number" id=${
-            cartItem.id
-          } class="input" min="1" max="5" value=${cartItem.quantity}></li>
-          <li class="addRemove container">
-            <button onclick="update('plus', ${cartItem.id})">
-            +</button>
-            <button onclick="update('minus', ${cartItem.id})">-</button>
-            <li class="removeItem"> <i onclick=removeFromCart(${
-              cartItem.id
-            }) class="fa-solid fa-trash-alt fa-xl"></i> </li>
-        </ul>
-      </div>
-    `;
-    cartProducts.innerHTML += item;
+    if (!manufacturers[cartItem.manufacturer]) {
+      manufacturers[cartItem.manufacturer] = [];
+    }
+    manufacturers[cartItem.manufacturer].push({
+      name: cartItem.name,
+      totalPrice: totalPrice.toFixed(2),
+    });
   });
+
+  for (let manufacturer in manufacturers) {
+    let manufacturerHTML = `<h3>${manufacturer}</h3><div class="manufacturer-products">`;
+    let productsHTML = "";
+    let total = 0;
+    manufacturers[manufacturer].forEach((cartItem) => {
+      productsHTML += `
+        <div class="cartProduct">
+        <ul class="cartDetails container">
+        <li><h4>${cartItem.name}</h4></li>
+        <li class="cartProductPrice productSubtotal">${cartItem.totalPrice}zł</li>
+        <li class="cartQuantity"><input type="number" id=${cartItem.id} class="input" min="1" max="5" value=${cartItem.quantity}></li>
+        <li class="addRemove container">
+          <button onclick="update('plus', ${cartItem.id})">
+          +</button>
+          <button onclick="update('minus', ${cartItem.id})">-</button>
+          <li class="removeItem"> <i onclick=removeFromCart(${cartItem.id}) class="fa-solid fa-trash-alt fa-xl"></i> </li>
+        </ul>
+        </div>
+      `;
+      total += parseFloat(cartItem.totalPrice);
+    });
+    manufacturerHTML +=
+      productsHTML + `<li><h4>Total: ${total.toFixed(2)}zł</h4></li></div>`;
+    cartProducts.innerHTML += manufacturerHTML;
+  }
 }
 
 // calculate total
