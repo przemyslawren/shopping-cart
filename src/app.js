@@ -39,7 +39,7 @@ displayShopProducts();
 function update(action, id) {
   let input = document.getElementById(id);
   let value = input.value;
-  if (action === "minus" && value > 0) {
+  if (action === "minus" && value > 1) {
     value--;
   } else if (action === "plus") {
     value++;
@@ -53,7 +53,7 @@ function changeQuantity(action, id) {
   let value = parseInt(input.value);
   let cartItem = cart.find((cartItem) => cartItem.id === id);
 
-  if (action === "minus" && value > 0) {
+  if (action === "minus" && value > 1) {
     value--;
   } else if (action === "plus") {
     value++;
@@ -87,7 +87,7 @@ function addToCart(id) {
   updateCart();
 }
 
-// update cart, sort by manufacturer and display total
+// update cart, group by manufacturer and display total
 function updateCart() {
   cartProducts.innerHTML = "";
   let manufacturers = {};
@@ -104,16 +104,17 @@ function updateCart() {
   });
 
   for (let manufacturer in manufacturers) {
-    let manufacturerHTML = `<h3>${manufacturer}</h3><div class="manufacturer-products">`;
+    let manufacturerHTML = `<h3>${manufacturer}</h3><div class="manufacturerProducts">`;
     let productsHTML = "";
     let total = 0;
+
     manufacturers[manufacturer].forEach((cartItem) => {
       productsHTML += `
         <div class="cartProduct">
         <ul class="cartDetails container">
         <li><h4>${cartItem.name}</h4></li>
-        <li class="cartProductPrice productSubtotal">${cartItem.totalPrice}zł</li>
-        <li class="cartQuantity"><input type="number" id=${cartItem.id} class="input" min="1" max="5" value=${cartItem.quantity}></li>
+        <li class="cartProductPrice">${cartItem.totalPrice}zł</li>
+        <li class="cartQuantity"><input type="number" id=${cartItem.id} class="input" min="1" max="5" value=${cartItem.value}></li>
         <li class="addRemove container">
           <button onclick="update('plus', ${cartItem.id})">
           +</button>
@@ -124,8 +125,7 @@ function updateCart() {
       `;
       total += parseFloat(cartItem.totalPrice);
     });
-    manufacturerHTML +=
-      productsHTML + `<li><h4>Total: ${total.toFixed(2)}zł</h4></li></div>`;
+    manufacturerHTML += productsHTML + `<h4>Total: ${total.toFixed(2)}zł</h4>`;
     cartProducts.innerHTML += manufacturerHTML;
   }
 }
