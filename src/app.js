@@ -1,30 +1,41 @@
-// select shop element
+// arrays
+let products = [];
+let cart = [];
+
+// select DOM elements
 const shopProducts = document.querySelector(".shopProducts");
 const cartProducts = document.querySelector(".cartProducts");
 const cartTotal = document.querySelector(".cartTotal");
-let cart = [];
+
+//fetch products from local file
+fetch("src/products.json")
+  .then((response) => response.json())
+  .then((data) => {
+    products = data;
+    displayShopProducts();
+  });
 
 // render shop products
 function displayShopProducts() {
-  products.forEach((cartItem) => {
-    let totalPrice = cartItem.price * cartItem.quantity;
+  products.forEach((product) => {
+    let totalPrice = product.price * product.quantity;
     const item = `
         <div class="shopProduct">
-        <img src="${cartItem.image}" alt="Image of a bike"</img>
-        <h3>${cartItem.name}</h3>
-        <h4>${cartItem.manufacturer}</h4>
-        <p>${cartItem.shortDescription}</p>
+        <img src="${product.image}" alt="Image of a bike"</img>
+        <h3>${product.name}</h3>
+        <h4>${product.manufacturer}</h4>
+        <p>${product.shortDescription}</p>
         <ul class="productDetails container">
           <li class="shopProductPrice">${totalPrice.toFixed(2)}zł</li>
           <li class="quantity"><input type="number" id=${
-            cartItem.id
-          } class="input" min="1" max="5" value=${cartItem.quantity}></li>
+            product.id
+          } class="input" min="1" max="5" value=${product.quantity}></li>
           <li class="addRemove container">
-            <button onclick="update('plus', ${cartItem.id})">
+            <button onclick="update('plus', ${product.id})">
             +</i></button>
-            <button onclick="update('minus', ${cartItem.id})">-</i></button>
+            <button onclick="update('minus', ${product.id})">-</i></button>
           <li class="addToCart"><i onclick=addToCart(${
-            cartItem.id
+            product.id
           }) class="fa-solid fa-cart-plus fa-xl"></i></li>
         </ul>
         </div>
@@ -32,8 +43,6 @@ function displayShopProducts() {
     shopProducts.innerHTML += item;
   });
 }
-
-displayShopProducts();
 
 // update value
 function update(action, id) {
@@ -47,7 +56,6 @@ function update(action, id) {
   input.value = value;
 }
 
-// change quantity
 function changeQuantity(action, id) {
   let input = document.getElementById(id);
   let value = parseInt(input.value);
@@ -69,19 +77,15 @@ function changeQuantity(action, id) {
 // add to  cart
 function addToCart(id) {
   let input = document.getElementById(id);
-  let value = parseInt(input.value);
-  let existingCartItem = cart.find((cartItem) => cartItem.id === id);
-
-  if (existingCartItem) {
-    existingCartItem.quantity += value;
+  if (cart.some((cartItem) => cartItem.id === id)) {
+    changeQuantity("plus", id);
   } else {
-    const cartItem = products.find((cartItem) => cartItem.id === id);
+    const cartItem = products.find((product) => product.id === id);
     cart.push({
       ...cartItem,
-      quantity: value,
+      quantity: input.value,
     });
   }
-
   input.value = 1;
   displayTotal();
   updateCart();
@@ -107,7 +111,6 @@ function updateCart() {
     let manufacturerHTML = `<h3>${manufacturer}</h3><div class="manufacturerProducts">`;
     let productsHTML = "";
     let total = 0;
-
     manufacturers[manufacturer].forEach((cartItem) => {
       productsHTML += `
         <div class="cartProduct">
@@ -130,6 +133,15 @@ function updateCart() {
   }
 }
 
+//remove from cart
+function removeFromCart(id) {
+  cart = cart.filter((cartItem) => cartItem.id !== id);
+  updateCart();
+  if (!cart.length) {
+    hideCheckout();
+  }
+}
+
 // calculate total
 function calculateTotal() {
   let total = 0;
@@ -148,15 +160,6 @@ function displayTotal() {
   <button onclick="checkout()" class="btn btn-secondary
   ">Checkout</button>
   </div>`;
-}
-
-//remove from cart
-function removeFromCart(id) {
-  cart = cart.filter((cartItem) => cartItem.id !== id);
-  updateCart();
-  if (!cart.length) {
-    hideCheckout();
-  }
 }
 
 // checkout
