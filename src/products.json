@@ -160,23 +160,5 @@
     "shortDescription": "Lorem ipsum dolor sit amet.",
     "price": 18899,
     "quantity": 1
-  },
-  {
-    "id": 18,
-    "image": "https://images.internetstores.de/products/1502510/02/cc3036/focus-thron-68-625wh-creme-white-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
-    "name": "Thron²",
-    "manufacturer": "FOCUS",
-    "shortDescription": "Lorem ipsum dolor sit amet.",
-    "price": 19899,
-    "quantity": 1
-  },
-  {
-    "id": 19,
-    "image": "https://images.internetstores.de/products/1502549/02/2cfaa7/focus-whistler-36-slate-grey-1.jpg?forceSize=true&forceAspectRatio=true&useTrim=true&size=613x613",
-    "name": "Whistler",
-    "manufacturer": "FOCUS",
-    "shortDescription": "Lorem ipsum dolor sit amet.",
-    "price": 2699,
-    "quantity": 1
   }
 ]

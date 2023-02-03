@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Containers & Buttons */
+/* Containers & Repeated Items */
 .container {
   display: flex;
 }
@@ -14,9 +14,22 @@
   padding: 15px;
 }
 
-// .checkoutButton {
-// }
+.btn {
+  margin: 3px;
+}
+
+input[type="number"],
+textarea {
+  background-color: lightgrey;
+  outline: lightgrey;
+}
+
+.fa-solid:hover {
+  color: #4a756e;
+}
+
 body {
+  background-color: #cab19b;
   //Shop
   main {
     display: flex;
@@ -25,8 +38,11 @@ body {
     gap: 15px;
 
     .shop {
+      background-color: lightgrey;
       border: 1px solid grey;
       .shopHeading {
+        color: lightgrey;
+        background-color: #4a756e;
         border-bottom: 1px solid grey;
       }
       .shopProducts {
@@ -36,6 +52,7 @@ body {
         gap: 15px;
 
         .shopProduct {
+          background-color: #ffffff;
           border: 1px solid grey;
           text-align: center;
           flex-grow: 1;
@@ -44,10 +61,11 @@ body {
           }
 
           .productDetails {
+            background-color: #b99976;
             margin: 0;
             justify-content: space-around;
             align-items: center;
-            border: 1px solid grey;
+            border-top: 1px solid grey;
             list-style: none;
             text-decoration: none;
             color: #000000;
@@ -62,33 +80,55 @@ body {
 
             .addRemove {
               flex-direction: column;
+              flex-grow: 1; /* do not grow   - initial value: 0 */
+              flex-shrink: 0; /* do not shrink - initial value: 1 */
+              flex-basis: 2em; /* width/height  - initial value: auto */
             }
           }
         }
       }
     }
     .cart {
+      background-color: lightgrey;
       min-width: 30%;
       height: fit-content;
 
       .cartHeading {
+        color: lightgrey;
+        background-color: #4a756e;
         border: 1px solid grey;
       }
 
       .cartProducts {
+        background-color: #ffffff;
         overflow-y: scroll;
         max-height: 400px;
         border: 1px solid grey;
         border-top: 0;
         padding-top: 1rem;
 
+        .manufacturerProduct {
+          background-color: lightgrey;
+          border: 1px solid grey;
+          margin: 1rem;
+
+          .manufacturerTitle {
+            padding: 5px 0 0 5px;
+          }
+
+          .subTotal {
+            text-align: center;
+            border-top: 1px solid grey;
+          }
+        }
         .cartProduct {
           list-style: none;
           text-decoration: none;
           color: #000000;
-          padding: 0 10px;
 
           .cartDetails {
+            background-color: #b99976;
+            flex: 1 1 0px;
             justify-content: baseline;
             align-items: center;
             border: 1px solid grey;
@@ -104,14 +144,17 @@ body {
             }
             .addRemove {
               flex-direction: column;
+              flex: 0 0 50px;
             }
           }
         }
       }
     }
     .grandTotal {
-      background-color: lightgrey;
+      color: lightgrey;
+      background-color: #4a756e;
       text-align: center;
+      padding-top: 10px;
       padding-bottom: 10px;
       border: 1px solid grey;
       border-top: 0;

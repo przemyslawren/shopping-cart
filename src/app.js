@@ -31,9 +31,9 @@ function displayShopProducts() {
             product.id
           } class="input" min="1" max="5" value=${product.quantity}></li>
           <li class="addRemove container">
-            <button onclick="update('plus', ${product.id})">
+            <button class="btn btn-secondary btn-sm" onclick="update('plus', ${product.id})">
             +</i></button>
-            <button onclick="update('minus', ${product.id})">-</i></button>
+            <button class="btn btn-secondary btn-sm" onclick="update('minus', ${product.id})">-</i></button>
           <li class="addToCart"><i onclick=addToCart(${
             product.id
           }) class="fa-solid fa-cart-plus fa-xl"></i></li>
@@ -109,8 +109,8 @@ function displayCartProducts() {
   subCarts.forEach((manufacturer) => {
     let subTotal = 0;
     cartProduct += `
-    <div class="cartProduct">
-    <h4>${manufacturer}</h4>
+    <div class="manufacturerProduct">
+    <h4 class="manufacturerTitle"><i>${manufacturer}</i></h4>
     `;
     cart.forEach((product) => {
       if (product.manufacturer === manufacturer) {
@@ -119,15 +119,15 @@ function displayCartProducts() {
         cartProduct += `
         <div class="cartProduct">
         <ul class="cartDetails container">
-        <li><h4>${product.name}</h4></li>
+        <li><h5>${product.name}</h5></li>
         <li class="cartProductPrice">${totalPrice.toFixed(2)}zł</li>
         <li class="cartQuantity"><input type="number" id=${
           product.quantity
         } class="input" min="1" max="5" value=${product.quantity}></li>
         <li class="addRemove container">
-          <button onclick="changeQuantity('plus', ${product.id}, 1)">
+          <button class="btn btn-secondary btn-sm" onclick="changeQuantity('plus', ${product.id}, 1)">
           +</button>
-          <button onclick="changeQuantity('minus', ${product.id}, 1)">-</button>
+          <button class="btn btn-secondary btn-sm" onclick="changeQuantity('minus', ${product.id}, 1)">-</button>
           <li class="removeItem"> <i onclick=removeFromCart(${
             product.id
           }) class="fa-solid fa-trash-alt fa-xl"></i> </li>
@@ -138,6 +138,7 @@ function displayCartProducts() {
     });
     cartProduct += `
     <div class="subTotal">Total: ${subTotal.toFixed(2)}zł</div>
+    </div>
     `;
     cartProducts.innerHTML = cartProduct;
   });
@@ -167,8 +168,8 @@ function displayTotal() {
   let total = calculateTotal();
   cartTotal.innerHTML = `
   <div class="grandTotal">
-  <h4>Grand total: ${total.toFixed(2)}zł</h4>
-  <button onclick="checkout()" class="btn btn-secondary
+  <h5>Grand total: ${total.toFixed(2)}zł</h5>
+  <button onclick="checkout()" class="btn btn-outline-light
   ">Checkout</button>
   </div>`;
 }
