@@ -47,38 +47,20 @@ function displayShopProducts() {
 // update value
 function update(action, id) {
   let input = document.getElementById(id);
-  let value = input.value;
-  if (action === "minus" && value > 1) {
-    value--;
-  } else if (action === "plus") {
-    value++;
-  }
-  input.value = value;
-}
-
-function changeQuantity(action, id) {
-  let input = document.getElementById(id);
   let value = parseInt(input.value);
-  let cartItem = cart.find((cartItem) => cartItem.id === id);
-
   if (action === "minus" && value > 1) {
     value--;
   } else if (action === "plus") {
     value++;
   }
-
   input.value = value;
-  if (cartItem) {
-    cartItem.quantity = value;
-  }
-  updateCart();
 }
 
 // add to  cart
 function addToCart(id) {
   let input = document.getElementById(id);
   if (cart.some((cartItem) => cartItem.id === id)) {
-    changeQuantity("plus", id);
+    changeQuantity("plus", id, input.value);
   } else {
     const cartItem = products.find((product) => product.id === id);
     cart.push({
@@ -87,56 +69,85 @@ function addToCart(id) {
     });
   }
   input.value = 1;
-  displayTotal();
-  updateCart();
+  displayCartProducts();
+}
+
+// change quantity in cart
+function changeQuantity(action, id, addQuantity) {
+  cart = cart.map((product) => {
+    let quantity = parseInt(product.quantity);
+    if (product.id === id) {
+      if (action === "minus" && product.quantity > 1) {
+        quantity--;
+      } else if (action === "plus") {
+        quantity += parseInt(addQuantity);
+      }
+    }
+    return {
+      ...product,
+      quantity,
+    };
+  });
+  displayCartProducts();
+}
+
+// create subCarts
+function createsubCarts() {
+  subCarts = [];
+  const manufacturers = cart.map((product) => `${product.manufacturer}`);
+  manufacturers.forEach((manufacturer) => {
+    subCarts.includes(manufacturer) ? null : subCarts.push(manufacturer);
+  });
+  return subCarts;
 }
 
 // update cart, group by manufacturer and display total
-function updateCart() {
+function displayCartProducts() {
+  subCarts = createsubCarts();
   cartProducts.innerHTML = "";
-  let manufacturers = {};
-
-  cart.forEach((cartItem) => {
-    let totalPrice = cartItem.price * cartItem.quantity;
-    if (!manufacturers[cartItem.manufacturer]) {
-      manufacturers[cartItem.manufacturer] = [];
-    }
-    manufacturers[cartItem.manufacturer].push({
-      name: cartItem.name,
-      totalPrice: totalPrice.toFixed(2),
-    });
-  });
-
-  for (let manufacturer in manufacturers) {
-    let manufacturerHTML = `<h3>${manufacturer}</h3><div class="manufacturerProducts">`;
-    let productsHTML = "";
-    let total = 0;
-    manufacturers[manufacturer].forEach((cartItem) => {
-      productsHTML += `
+  let cartProduct = "";
+  subCarts.forEach((manufacturer) => {
+    let subTotal = 0;
+    cartProduct += `
+    <div class="cartProduct">
+    <h4>${manufacturer}</h4>
+    `;
+    cart.forEach((product) => {
+      if (product.manufacturer === manufacturer) {
+        let totalPrice = product.price * product.quantity;
+        subTotal += totalPrice;
+        cartProduct += `
         <div class="cartProduct">
         <ul class="cartDetails container">
-        <li><h4>${cartItem.name}</h4></li>
-        <li class="cartProductPrice">${cartItem.totalPrice}zł</li>
-        <li class="cartQuantity"><input type="number" id=${cartItem.id} class="input" min="1" max="5" value=${cartItem.value}></li>
+        <li><h4>${product.name}</h4></li>
+        <li class="cartProductPrice">${totalPrice.toFixed(2)}zł</li>
+        <li class="cartQuantity"><input type="number" id=${
+          product.quantity
+        } class="input" min="1" max="5" value=${product.quantity}></li>
         <li class="addRemove container">
-          <button onclick="update('plus', ${cartItem.id})">
+          <button onclick="changeQuantity('plus', ${product.id}, 1)">
           +</button>
-          <button onclick="update('minus', ${cartItem.id})">-</button>
-          <li class="removeItem"> <i onclick=removeFromCart(${cartItem.id}) class="fa-solid fa-trash-alt fa-xl"></i> </li>
+          <button onclick="changeQuantity('minus', ${product.id}, 1)">-</button>
+          <li class="removeItem"> <i onclick=removeFromCart(${
+            product.id
+          }) class="fa-solid fa-trash-alt fa-xl"></i> </li>
         </ul>
         </div>
       `;
-      total += parseFloat(cartItem.totalPrice);
+      }
     });
-    manufacturerHTML += productsHTML + `<h4>Total: ${total.toFixed(2)}zł</h4>`;
-    cartProducts.innerHTML += manufacturerHTML;
-  }
+    cartProduct += `
+    <div class="subTotal">Total: ${subTotal.toFixed(2)}zł</div>
+    `;
+    cartProducts.innerHTML = cartProduct;
+  });
+  displayTotal();
 }
 
 //remove from cart
 function removeFromCart(id) {
   cart = cart.filter((cartItem) => cartItem.id !== id);
-  updateCart();
+  displayCartProducts();
   if (!cart.length) {
     hideCheckout();
   }
@@ -177,7 +188,7 @@ function checkout() {
 // clear cart
 function clearCart() {
   cart = [];
-  updateCart();
+  displayCartProducts();
 }
 
 // hide checkout
